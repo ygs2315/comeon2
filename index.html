@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <div>피카츄, 꼬부기 구별</div>
+  <div>묵인지 빠인지 찌인지 맞혀봐</div>
   <button type="button" onclick="init()">Start</button>
   <script>
     //19_원래는 for을 돌면서 웹캠을 실행시켜 줬으나, 여기서는 한 번 만으로 예측을 해야 하므로, 아래와 같은 새로운 버튼 추가
@@ -87,7 +87,7 @@
     // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
     // the link to your model provided by Teachable Machine export panel
-    const URL = "https://teachablemachine.withgoogle.com/models/OoLqqDt-t8/";
+    const URL = "https://teachablemachine.withgoogle.com/models/529Pr_G1M/";
     
 
     let model, webcam, labelContainer, maxPredictions;
@@ -158,11 +158,14 @@
       //     // 06_위와 같이 HTML요소에 넣어주고 있다(innerHTML)
       // }
       // 08_아래 내용 추가(여기까지 코드 설명, 이후 코드펜 내용)
-      if (prediction[0].className == "피카츄" && prediction[0].probability.toFixed(2) > 0.8) {
-        labelContainer.childNodes[0].innerHTML = "피카츄 입니다."
+      if (prediction[0].className == "묵" && prediction[0].probability.toFixed(2) > 0.5) {
+        labelContainer.childNodes[0].innerHTML = "묵이넹ㅋ."
       }
-      else if (prediction[1].className == "꼬부기" && prediction[1].probability.toFixed(2) > 0.8) {
-        labelContainer.childNodes[0].innerHTML = "꼬부기 입니다."
+      else if (prediction[1].className == "찌" && prediction[1].probability.toFixed(2) > 0.5) {
+        labelContainer.childNodes[0].innerHTML = "찌넹ㅋ."
+      }
+      else if (prediction[2].className == "빠" && prediction[2].probability.toFixed(2) > 0.5) {
+        labelContainer.childNodes[0].innerHTML = "빠넹ㅋ"
       } else {
         labelContainer.childNodes[0].innerHTML = "알 수 없습니다."
       }
